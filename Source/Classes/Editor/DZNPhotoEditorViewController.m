@@ -91,6 +91,7 @@ typedef NS_ENUM(NSInteger, DZNPhotoAspect) {
 {
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.view.backgroundColor = [UIColor blackColor];
+    self.trimTransparentPixels = YES;
     
     if (DZN_IS_IPAD) {
         self.title = NSLocalizedString(@"Edit Photo", nil);
@@ -681,7 +682,7 @@ DZNPhotoAspect photoAspectFromSize(CGSize aspectRatio)
     dispatch_queue_t exampleQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0);
     dispatch_async(exampleQueue, ^{
         
-        UIImage *editedImage = [self trimmedImage:[self editedImage]];
+        UIImage *editedImage = self.trimTransparentPixels ? [self trimmedImage:[self editedImage]] : [self editedImage];
         
         dispatch_queue_t queue = dispatch_get_main_queue();
         dispatch_async(queue, ^{

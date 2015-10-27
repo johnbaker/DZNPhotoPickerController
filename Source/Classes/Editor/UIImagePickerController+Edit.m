@@ -15,6 +15,7 @@
 static char cropModeKey;
 static char cropSizeKey;
 static char previousDelegateKey;
+static char trimTransparencyKey;
 
 static char finalizationBlockKey;
 static char cancelationBlockKey;
@@ -37,6 +38,11 @@ static char cancelationBlockKey;
     return [objc_getAssociatedObject(self, &cropSizeKey) CGSizeValue];
 }
 
+- (BOOL)trimTransparency
+{
+    return [objc_getAssociatedObject(self, &trimTransparencyKey) boolValue];
+}
+
 - (id<UIImagePickerControllerDelegate>)previousDelegate
 {
     return objc_getAssociatedObject(self, &previousDelegateKey);
@@ -54,6 +60,14 @@ static char cancelationBlockKey;
 
 
 #pragma mark - Getters
+
+- (void)setTrimTransparency:(BOOL)trimTransparency
+{
+    
+    objc_setAssociatedObject(self, &trimTransparencyKey, @(trimTransparency), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    
+}
+
 
 - (void)setCropMode:(DZNPhotoEditorViewControllerCropMode)mode
 {
@@ -142,6 +156,7 @@ static char cancelationBlockKey;
         DZNPhotoEditorViewController *controller = [[DZNPhotoEditorViewController alloc] initWithImage:image];
         controller.cropMode = self.cropMode;
         controller.cropSize = self.cropSize;
+        controller.trimTransparentPixels = self.trimTransparency;
         [picker pushViewController:controller animated:YES];
         
         [controller setAcceptBlock:^(DZNPhotoEditorViewController *editor, NSDictionary *userInfo){

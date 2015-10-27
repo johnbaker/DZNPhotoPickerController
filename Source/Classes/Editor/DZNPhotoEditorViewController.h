@@ -25,6 +25,7 @@ typedef void (^DZNPhotoEditorCancelBlock)(DZNPhotoEditorViewController *editor);
 @property (nonatomic, assign) DZNPhotoEditorViewControllerCropMode cropMode;
 /** The cropping size. Default is view's size.width,size.width (most of the cases 320,320). */
 @property (nonatomic, assign) CGSize cropSize;
+@property (nonatomic, assign) BOOL trimTransparentPixels;
 
 /** The container for the edited image. */
 @property (nonatomic, readonly) UIImageView *imageView;

@@ -34,7 +34,7 @@
     __weak __typeof(self)weakSelf = self;
 
     DZNPhotoEditorViewController *controller = [[DZNPhotoEditorViewController alloc] initWithImage:self.imageView.image];
-    
+    controller.trimTransparentPixels = NO;
     [controller setAcceptBlock:^(DZNPhotoEditorViewController *editor, NSDictionary *userInfo){
         
         UIImage *image = userInfo[UIImagePickerControllerEditedImage];
@@ -61,8 +61,10 @@
 //    controller.delegate = self;
     controller.allowsEditing = YES;
     controller.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    
+    controller.trimTransparency = NO;
     controller.cropMode = DZNPhotoEditorViewControllerCropModeCircular;
+   // controller.trimTransparency = NO;
+  //  controller.trimTransparency = NO;
 //    picker.cropSize = CGSizeMake(CGRectGetWidth(self.view.frame), 100.0);
     
     controller.finalizationBlock = ^(UIImagePickerController *picker, NSDictionary *info) {

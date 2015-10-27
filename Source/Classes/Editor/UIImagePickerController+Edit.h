@@ -23,6 +23,7 @@ typedef void (^UIImagePickerControllerCancellationBlock)(UIImagePickerController
 @property (nonatomic, assign) DZNPhotoEditorViewControllerCropMode cropMode;
 /** The cropping size. Default is view's square size (generally 320,320). */
 @property (nonatomic) CGSize cropSize;
+@property (nonatomic, assign) BOOL trimTransparency;
 
 /** A block to be executed whenever the user picks a new photo. Use this block to replace delegate method imagePickerController:didFinishPickingPhotoWithInfo: */
 @property (nonatomic, strong) UIImagePickerControllerFinalizationBlock finalizationBlock;
